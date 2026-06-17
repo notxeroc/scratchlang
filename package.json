@@ -1,0 +1,30 @@
+{
+  "name": "scratchlang",
+  "displayName": "Scratchlang",
+  "description": "scratch-interpreted language that runs on AxiomOS (scratch.mit.edu/projects/1314644108)",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "scratchlang",
+      "aliases": ["Scratchlang", "scratchlang"],
+      "extensions": [".scl"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "scratchlang",
+      "scopeName": "source.scl",
+      "path": "./syntaxes/scratchlang.tmLanguage.json"
+    }],
+    "iconThemes": [{
+      "id": "scratchlang-icons",
+      "label": "Scratchlang File Icons",
+      "path": "./icons/scratchlang-icons.json"
+    }]
+  }
+}

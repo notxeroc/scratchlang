@@ -1,0 +1,81 @@
+{
+  "$schema": "https://githubusercontent.com",
+  "name": "Scratchlang",
+  "patterns": [
+    { "include": "#mnemonics" },
+    { "include": "#prefixes" },
+    { "include": "#strings" },
+    { "include": "#numbers" },
+    { "include": "#delimiters" }
+  ],
+  "repository": {
+    "mnemonics": {
+      "patterns": [
+        {
+          "name": "keyword.control.mnemonic.scratchlang",
+          "match": "\\b(?i:lay|lbl|rst|hlt|run|spk|exc|crc|cmd|clc|imp|new|del|inp|upd|jmp|jlt|jle|jeq|jne|jgt|jge|drw|stp|mov|hsv|rgb|hex|siz|dot|chr|clr|scb|dir|cst|dsp|pla|pch|pan|vol|pow|log|mod|sin|cos|tan|csc|sec|cot|sgn|abs|int|flr|cel|rng)\\b"
+        }
+      ]
+    },
+    "prefixes": {
+      "patterns": [
+        {
+          "name": "variable.language.system.scratchlang",
+          "match": "\\bs[1-9]\\b"
+        },
+        {
+          "name": "variable.language.local-sys.scratchlang",
+          "match": "\\bl[1-6]\\b"
+        },
+        {
+          "name": "variable.parameter.global.scratchlang",
+          "match": "\\bg[a-zA-Z0-9_]*\\b"
+        },
+        {
+          "name": "variable.other.local.scratchlang",
+          "match": "\\bv[a-zA-Z0-9_]*\\b"
+        },
+        {
+          "name": "entity.name.tag.label.scratchlang",
+          "match": "\\$[a-zA-Z0-9_]+"
+        },
+        {
+          "name": "support.class.package.scratchlang",
+          "match": "\\b(Pen|Mus|Mth)\\b"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.scratchlang",
+          "begin": "\"",
+          "end": "(\\n|$|;)",
+          "patterns": [
+            {
+              "name": "constant.character.escape.scratchlang",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.scratchlang",
+          "match": "\\b[0-9]+(\\.[0-9]+)?\\b"
+        }
+      ]
+    },
+    "delimiters": {
+      "patterns": [
+        {
+          "name": "punctuation.separator.delimiter.scratchlang",
+          "match": ";"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.scl"
+}
