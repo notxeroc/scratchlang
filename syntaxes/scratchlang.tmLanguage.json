@@ -21,19 +21,19 @@
       "patterns": [
         {
           "name": "variable.language.system.scratchlang",
-          "match": "\\bs[1-9]\\b"
+          "match": "\\b;(s[0-9]+)\\b"
         },
         {
           "name": "variable.language.local-sys.scratchlang",
-          "match": "\\bl[1-6]\\b"
+          "match": "\\b;(l[0-9]+)\\b"
         },
         {
           "name": "variable.parameter.global.scratchlang",
-          "match": "\\bg[a-zA-Z0-9_]*\\b"
+          "match": "\\b;(g[0-9]+)\\b"
         },
         {
           "name": "variable.other.local.scratchlang",
-          "match": "\\bv[a-zA-Z0-9_]*\\b"
+          "match": "\\b;(v[0-9]+)\\b"
         },
         {
           "name": "entity.name.tag.label.scratchlang",
@@ -41,7 +41,7 @@
         },
         {
           "name": "support.class.package.scratchlang",
-          "match": "\\b(Pen|Mus|Mth)\\b"
+          "match": "\\b(pen|mus|mth)\\b"
         }
       ]
     },
