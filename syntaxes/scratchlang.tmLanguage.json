@@ -20,27 +20,27 @@
     "prefixes": {
       "patterns": [
         {
-          "name": "variable.language.system.scratchlang",
-          "match": "\\b;(s[0-9]+)\\b"
+          "name": "variable.language.scratchlang",
+          "match": "\\bs[0-9]+\\b"
         },
         {
-          "name": "variable.language.local-sys.scratchlang",
-          "match": "\\b;(l[0-9]+)\\b"
+          "name": "variable.language.scratchlang",
+          "match": "\\bl[0-9]+\\b"
         },
         {
-          "name": "variable.parameter.global.scratchlang",
-          "match": "\\b;(g[0-9]+)\\b"
+          "name": "variable.parameter.scratchlang",
+          "match": "\\bg[0-9]+\\b"
         },
         {
-          "name": "variable.other.local.scratchlang",
-          "match": "\\b;(v[0-9]+)\\b"
+          "name": "variable.parameter.scratchlang", 
+          "match": "\\bv[0-9]+\\b"
         },
         {
-          "name": "entity.name.tag.label.scratchlang",
+          "name": "entity.name.function.scratchlang",
           "match": "\\$[a-zA-Z0-9_]+"
         },
         {
-          "name": "support.class.package.scratchlang",
+          "name": "support.class.scratchlang",
           "match": "\\b(pen|mus|mth)\\b"
         }
       ]
@@ -71,7 +71,7 @@
     "delimiters": {
       "patterns": [
         {
-          "name": "punctuation.separator.delimiter.scratchlang",
+          "name": "punctuation.terminator.scratchlang",
           "match": ";"
         }
       ]
