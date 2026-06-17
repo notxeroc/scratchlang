@@ -1,4 +1,5 @@
 {
+  "inherits": "vscode-seti",
   "iconDefinitions": {
     "scl_file": {
       "iconPath": "./sclicon.svg"

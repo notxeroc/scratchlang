@@ -14,21 +14,24 @@
     "Programming Languages"
   ],
   "contributes": {
-    "languages": [{
-      "id": "scratchlang",
-      "aliases": ["Scratchlang", "scratchlang"],
-      "extensions": [".scl"],
-      "configuration": "./language-configuration.json"
-    }],
-    "grammars": [{
-      "language": "scratchlang",
-      "scopeName": "source.scl",
-      "path": "./syntaxes/scratchlang.tmLanguage.json"
-    }],
-    "iconThemes": [{
-      "id": "scratchlang-icons",
-      "label": "Scratchlang File Icons",
-      "path": "./icons/scratchlang-icons.json"
-    }]
+    "languages": [
+      {
+        "id": "scratchlang",
+        "aliases": ["Scratchlang", "scratchlang"],
+        "extensions": [".scl"],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./icons/sclicon.svg",
+          "dark": "./icons/sclicon.svg"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "scratchlang",
+        "scopeName": "source.scl",
+        "path": "./syntaxes/scratchlang.tmLanguage.json"
+      }
+    ]
   }
 }
