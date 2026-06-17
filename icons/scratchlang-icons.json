@@ -4,7 +4,6 @@
       "iconPath": "./sclicon.svg"
     }
   },
-  "file": "scl_file",
   "fileExtensions": {
     "scl": "scl_file"
   }
