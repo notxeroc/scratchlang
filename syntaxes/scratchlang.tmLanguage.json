@@ -13,7 +13,7 @@
       "patterns": [
         {
           "name": "keyword.control.mnemonic.scratchlang",
-          "match": "\\b(?i:lay|lbl|rst|hlt|run|spk|exc|crc|cmd|clc|imp|new|del|inp|upd|jmp|jlt|jle|jeq|jne|jgt|jge|drw|stp|mov|hsv|rgb|hex|siz|dot|chr|clr|scb|dir|cst|dsp|pla|pch|pan|vol|pow|log|mod|sin|cos|tan|csc|sec|cot|sgn|abs|int|flr|cel|rng)\\b"
+          "match": "\\b(?i:lay|lbl|rst|hlt|run|spk|exc|crc|cmd|clc|imp|new|del|inp|upd|jmp|jlt|jle|jeq|jne|jgt|jge|drw|stp|mov|hsv|rgb|hex|siz|dot|chr|clr|scb|dir|cst|dsp|pla|pch|pan|vol|pow|log|mod|sin|cos|tan|csc|sec|cot|sgn|abs|int|flr|cel|rng|cat|idx|len|red|rdl|rdc|wsf|wcf|nwf|rmf|fln)\\b"
         }
       ]
     },
@@ -41,7 +41,7 @@
         },
         {
           "name": "support.class.scratchlang",
-          "match": "\\b(pen|mus|mth)\\b"
+          "match": "\\b(pen|mus|mth|str|fle)\\b"
         }
       ]
     },
@@ -50,7 +50,7 @@
         {
           "name": "string.quoted.double.scratchlang",
           "begin": "\"",
-          "end": "(\\n|$|;)",
+          "end": "\\n|$|;",
           "patterns": [
             {
               "name": "constant.character.escape.scratchlang",
