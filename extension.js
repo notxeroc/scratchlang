@@ -72,6 +72,22 @@ function updateDiagnostics(document, collection) {
     const diagnostics = [];
     const importedPackages = new Set();
 
+    // First pass: collect all imported packages anywhere in the document
+    for (let i = 0; i < document.lineCount; i++) {
+        const ln = document.lineAt(i).text;
+        if (/^%\s*/.test(ln)) continue;
+        const segs = ln.split(';').map(s => s.trim());
+        if (!segs[0]) continue;
+        if (segs[0].toLowerCase() === 'imp' && segs[1]) {
+            const arg = segs[1].trim();
+            const importPackageName = arg.replace(/^['"]|['"]$/g, '');
+            if (validImports.has(importPackageName)) {
+                importedPackages.add(importPackageName);
+            }
+        }
+    }
+
+    // Second pass: validate uses against collected imports
     for (let lineIndex = 0; lineIndex < document.lineCount; lineIndex++) {
         const line = document.lineAt(lineIndex);
         const text = line.text;
@@ -95,7 +111,38 @@ function updateDiagnostics(document, collection) {
         const packageName = isPackageQualified ? packageQualifiedMatch[1].toLowerCase() : null;
         const qualifiedMnemonic = isPackageQualified ? packageQualifiedMatch[2].toLowerCase() : null;
 
-        if (isPackageQualified && validImports.has(packageName)) {
+        if (isPackageQualified) {
+            // Require that the package be imported even when using package-qualified syntax
+            if (!validImports.has(packageName)) {
+                const unknownRange = new vscode.Range(
+                    lineIndex,
+                    commandStart,
+                    lineIndex,
+                    commandEnd
+                );
+                diagnostics.push(new vscode.Diagnostic(
+                    unknownRange,
+                    `Unknown package '${packageName}' in '${firstSegment}'. Use one of: ${Array.from(validImports).join(', ')}`,
+                    vscode.DiagnosticSeverity.Warning
+                ));
+                continue;
+            }
+
+            if (!importedPackages.has(packageName)) {
+                const importRange = new vscode.Range(
+                    lineIndex,
+                    commandStart,
+                    lineIndex,
+                    commandEnd
+                );
+                diagnostics.push(new vscode.Diagnostic(
+                    importRange,
+                    `Package '${packageName}' must be imported before use with 'imp;${packageName}'.`,
+                    vscode.DiagnosticSeverity.Error
+                ));
+                continue;
+            }
+
             const packageCommand = qualifiedMnemonic;
             const isKnownPackageMnemonic = packageMnemonics[packageName]?.includes(packageCommand);
             if (!isKnownPackageMnemonic) {
@@ -111,6 +158,7 @@ function updateDiagnostics(document, collection) {
                     vscode.DiagnosticSeverity.Warning
                 ));
             }
+
             continue;
         }
 
@@ -119,9 +167,7 @@ function updateDiagnostics(document, collection) {
             const importPackageName = arg.replace(/^['"]|['"]$/g, '');
             const argStart = text.indexOf(arg, commandEnd);
 
-            if (validImports.has(importPackageName)) {
-                importedPackages.add(importPackageName);
-            } else {
+            if (!validImports.has(importPackageName)) {
                 const importRange = new vscode.Range(
                     lineIndex,
                     argStart,
@@ -211,6 +257,61 @@ function activate(context) {
             }
         })
     );
+
+    // Command to insert '%' as a comment prefix for multiple selected lines
+    const percentCommand = vscode.commands.registerTextEditorCommand('scratchlang.insertPercentComment', (editor, edit) => {
+        const doc = editor.document;
+        for (const sel of editor.selections) {
+            if (sel.isEmpty) {
+                edit.insert(sel.start, '% ');
+                continue;
+            }
+
+            const startLine = sel.start.line;
+            let endLine = sel.end.line;
+
+            // If selection ends at column 0 on a later line, treat it as not including that line
+            if (sel.end.character === 0 && endLine > startLine) {
+                endLine = endLine - 1;
+            }
+
+            const lineInfos = [];
+            for (let l = startLine; l <= endLine; l++) {
+                const lineText = doc.lineAt(l).text;
+                const isComment = lineText.trim().startsWith('%');
+                lineInfos.push({ line: l, text: lineText, isComment });
+            }
+
+            const commentCount = lineInfos.filter(info => info.isComment).length;
+            const shouldUncomment = commentCount > lineInfos.length / 2;
+
+            if (shouldUncomment) {
+                for (let idx = lineInfos.length - 1; idx >= 0; idx--) {
+                    const info = lineInfos[idx];
+                    if (!info.isComment) {
+                        continue;
+                    }
+
+                    const commentMatch = info.text.match(/^(\s*)%\s?/);
+                    if (commentMatch) {
+                        const prefix = commentMatch[0];
+                        const start = new vscode.Position(info.line, commentMatch[1].length);
+                        const end = start.translate(0, prefix.length - commentMatch[1].length);
+                        edit.delete(new vscode.Range(start, end));
+                    }
+                }
+            } else {
+                for (let idx = lineInfos.length - 1; idx >= 0; idx--) {
+                    const info = lineInfos[idx];
+                    if (!info.isComment) {
+                        edit.insert(new vscode.Position(info.line, 0), '% ');
+                    }
+                }
+            }
+        }
+    });
+
+    context.subscriptions.push(percentCommand);
 
     vscode.workspace.textDocuments.forEach(document => updateOpenDocument(document));
 }
