@@ -1,5 +1,6 @@
 {
   "name": "scratchlang",
+  "publisher": "notxeroc_",
   "displayName": "Scratchlang",
   "description": "scratch-interpreted language that runs on AxiomOS (scratch.mit.edu/projects/1314644108)",
   "version": "0.0.1",
