@@ -23,7 +23,7 @@
       "patterns": [
         {
           "name": "keyword.control.mnemonic.scratchlang",
-          "match": "\\b(?i:lay|lbl|rst|hlt|run|spk|exc|crc|cmd|clc|imp|new|del|inp|upd|jmp|jlt|jle|jeq|jne|jgt|jge|jkp|jkt|drw|stp|mov|hsv|rgb|hex|siz|dot|chr|clr|scb|dir|cst|dsp|pla|pch|pan|vol|pow|log|mod|sin|cos|tan|csc|sec|cot|sgn|abs|int|flr|cel|rng|cat|idx|len|red|rdl|rdc|wsf|wcf|nwf|rmf|fln|sov|hlo|jnp|jnt|tri|set|gkp|gkt|ord|chr|dbg)\\b"
+          "match": "\\b(?i:lay|lbl|rst|hlt|run|spk|exc|crc|cmd|clc|imp|new|del|inp|upd|jmp|jlt|jle|jeq|jne|jgt|jge|jkp|jkt|drw|stp|mov|hsv|rgb|hex|siz|dot|chr|clr|scb|dir|cst|dsp|pla|pch|pan|vol|pow|log|mod|sin|cos|tan|csc|sec|cot|sgn|abs|int|flr|cel|rng|cat|idx|len|red|rdl|rdc|wsf|wcf|nwf|rmf|fln|sov|hlo|jnp|jnt|tri|set|gkp|gkt|ord|chr|dbg|ret|cal|pop)\\b"
         }
       ]
     },

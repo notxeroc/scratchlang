@@ -26,7 +26,7 @@ const baseMnemonics = [
     'lay', 'lbl', 'rst', 'hlt', 'run', 'spk', 'exc', 'crc', 'cmd',
     'clc', 'imp', 'new', 'del', 'inp', 'upd', 'jmp', 'jlt', 'jle',
     'jeq', 'jne', 'jgt', 'jge', 'jkp', 'jkt', 'jnp', 'jnt', 'sov',
-    'hlo', 'set', 'gkt', 'gkp', 'dbg'
+    'hlo', 'set', 'gkt', 'gkp', 'dbg', 'cal', 'ret'
 ];
 
 const packageMnemonics = {
@@ -42,7 +42,7 @@ const packageMnemonics = {
         'cot', 'sgn', 'abs', 'int', 'flr', 'cel', 'rng'
     ],
     str: [
-        'cat', 'idx', 'len', 'chr', 'ord'
+        'cat', 'idx', 'len', 'chr', 'ord', 'pop'
     ],
     fle: [
         'red', 'rdl', 'rdc', 'wsf', 'wcf', 'nwf', 'rmf', 'fln'
