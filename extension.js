@@ -24,7 +24,7 @@ const docs = {
 
 const baseMnemonics = [
     'lay', 'lbl', 'rst', 'hlt', 'run', 'spk', 'exc', 'crc', 'cmd',
-    'clc', 'imp', 'new', 'del', 'inp', 'upd', 'jmp', 'jlt', 'jle',
+    'clc', 'imp',   'new', 'del', 'inp', 'upd', 'jmp', 'jlt', 'jle',
     'jeq', 'jne', 'jgt', 'jge', 'jkp', 'jkt', 'jnp', 'jnt', 'sov',
     'hlo', 'set', 'gkt', 'gkp', 'dbg', 'cal', 'ret'
 ];

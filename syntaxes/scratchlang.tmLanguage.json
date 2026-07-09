@@ -50,6 +50,10 @@
           "match": "\\$[a-zA-Z0-9_]+"
         },
         {
+          "name": "variable.language.scratchlang",
+          "match": "\\bi[0-9]+\\b"
+        },
+        {
           "name": "support.class.scratchlang",
           "match": "\\b(pen|mus|mth|str|fle)\\b"
         }
